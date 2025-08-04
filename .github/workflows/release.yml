@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - 'v*'
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,3 +19,7 @@ jobs:
       - uses: softprops/action-gh-release@v1
         with:
           files: module.zip
+          draft: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.RELEASES_TOKEN }}
