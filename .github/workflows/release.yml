@@ -1,0 +1,19 @@
+name: Release
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm install
+      - run: npm run build
+      - run: zip -r module.zip dist manifest.json README.md LICENSE
+      - uses: softprops/action-gh-release@v1
+        with:
+          files: module.zip
