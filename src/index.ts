@@ -4,36 +4,29 @@ import {
   onRPCInvoke,
   ActionMessage,
   reply,
-} from "@statehub/modlib"
+} from '@statehub/modlib'
+import { Router } from 'express'
 
 initModule({
-  routes: [
-    {
-      method: 'get',
-      path: '/ping',
-      handlerId: 'ping',
-      auth: false
-    },
-  ],
   commands: [
     { command: 'ping', handlerId: 'ping', broadcast: false, auth: false }
   ]
 })
 
-const handlers: Record<string, (payload: any) => any> = {
-  ping: (_payload) => {
-    log('Ping received')
-    return {
-      message: `pong`
-    }
-  }
-}
-
 onRPCInvoke((msg?: ActionMessage) => {
   if (!msg?.id || !msg.handlerId) return
-  const fn = handlers[msg.handlerId]
-  if (!fn) return
-
-  const res = fn(msg.payload)
-  reply(msg.id, res)
+  
+  if (msg.handlerId === 'ping') {
+    log('WebSocket ping received')
+    reply(msg.id, { message: 'pong' })
+  }
 })
+
+const router = Router()
+
+router.get('/ping', (req, res) => {
+  log('HTTP ping received')
+  res.json({ message: 'pong' })
+})
+
+export { router }
