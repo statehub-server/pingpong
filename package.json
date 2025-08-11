@@ -1,13 +1,13 @@
 {
   "name": "pingpong",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "author": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "node esbuild.config.js",
-    "makedirs:linux": "rm -rf ~/.config/statehub/modules/pingpong && mkdir -p ~/.config/statehub/modules/pingpong",
-    "copyfiles:linux": "cp -r dist/ manifest.json LICENSE -t ~/.config/statehub/modules/pingpong && echo Module installed!",
+    "makedirs:linux": "rm -rf ~/.config/statehub/modules/@statehub/pingpong && mkdir -p ~/.config/statehub/modules/@statehub/pingpong",
+    "copyfiles:linux": "cp -r dist/ manifest.json LICENSE -t ~/.config/statehub/modules/@statehub/pingpong && echo Module installed!",
     "install:linux": "npm run makedirs:linux && npm run copyfiles:linux"
   },
   "devDependencies": {
@@ -16,7 +16,7 @@
     "esbuild": "^0.25.5"
   },
   "dependencies": {
-    "@statehub/modlib": "^2.1.0",
+    "@statehub/modlib": "^2.2.0",
     "express": "^4.18.2"
   }
 }
