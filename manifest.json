@@ -1,7 +1,7 @@
 {
   "name": "@statehub/pingpong",
   "description": "A module to ping-pong through HTTP and Websocket",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "author": "Olivia Navarro",
   "license": "MIT",
   "entryPoint": "dist/index.js",
